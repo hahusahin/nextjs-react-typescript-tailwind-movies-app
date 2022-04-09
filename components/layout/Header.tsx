@@ -17,14 +17,11 @@ const Header = () => {
               <span className="text-2xl font-semibold">Movies</span>
             </a>
           </Link>
-          <SearchForm style="hidden md:flex justify-center" />
+          <SearchForm style="hidden md:flex justify-center" onCloseCollapsingBar={() => setIsOpen(false)}/>
           <div className="hidden md:flex space-x-8">
             <Link href="/">
               <a className="text-xl">Home</a>
             </Link>
-            {/* <Link href="/about">
-              <a className="text-xl">About</a>
-            </Link> */}
           </div>
           <button
             className="flex md:hidden"
@@ -35,12 +32,9 @@ const Header = () => {
         </div>
         {isOpen && (
           <div className="md:hidden flex flex-col items-center space-y-4 py-4">
-            <SearchForm style="flex justify-center" />
+            <SearchForm style="flex justify-center" onCloseCollapsingBar={() => setIsOpen(false)}/>
             <Link href="/">
               <a className="text-xl">Home</a>
-            </Link>
-            <Link href="/about">
-              <a className="text-xl">About</a>
             </Link>
           </div>
         )}

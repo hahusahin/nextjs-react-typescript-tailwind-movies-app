@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchForm: React.FC<{ style: string }> = (props) => {
+const SearchForm: React.FC<{ style: string; onCloseCollapsingBar: () => void }> = (props) => {
 
   const router = useRouter()
   const textRef = useRef<HTMLInputElement>(null)
@@ -10,6 +10,7 @@ const SearchForm: React.FC<{ style: string }> = (props) => {
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
+    props.onCloseCollapsingBar()
     const query = textRef.current?.value
     router.push(`/?search=${query}`)
     formRef.current?.reset()
