@@ -1,19 +1,22 @@
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
+import { MovieContext } from "../../context/movie-context";
 
-const SearchForm: React.FC<{ style: string; onCloseCollapsingBar: () => void }> = (props) => {
+const SearchForm: React.FC<{style: string; onCloseCollapsingBar: () => void;}> = (props) => {
 
-  const router = useRouter()
-  const textRef = useRef<HTMLInputElement>(null)
+  const router = useRouter();
+  const movieCtx = useContext(MovieContext);
+  const textRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    props.onCloseCollapsingBar()
-    const query = textRef.current?.value
-    router.push(`/?search=${query}`)
-    formRef.current?.reset()
+    movieCtx.resetState();
+    const query = textRef.current?.value;
+    router.push(`/search?key=${query}`);
+    props.onCloseCollapsingBar();
+    formRef.current?.reset();
   };
 
   return (

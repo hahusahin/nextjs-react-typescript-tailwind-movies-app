@@ -4,7 +4,7 @@ import Head from "next/head";
 import ScrollingNav from "../components/layout/ScrollingNav";
 import MovieList from "../components/Movies/MovieList";
 import MovieItemType from "../models/movieItemType";
-import apis from "../utils/api";
+import { API_BASE_URL, API_KEY } from "../utils/config";
 
 const Home: NextPage<{ movies: MovieItemType[]; title: string }> = (props) => {
 
@@ -25,10 +25,8 @@ const Home: NextPage<{ movies: MovieItemType[]; title: string }> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-  const genre =  context.query.genre as string || "popular"
-  const foundAPI = apis.find((api) => api.id === genre);
-  const title = `${foundAPI!.title} Movies`
-  const response = await axios.get(foundAPI!.url);
+  const query = context.query.key
+  const response = await axios.get(`${API_BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}`);
   const data = response.data.results
 
   const movies: MovieItemType[] = data.map((movie: any) => ({
@@ -40,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       movies,
-      title,
+      title: "Search Results",
     },
   };
 };

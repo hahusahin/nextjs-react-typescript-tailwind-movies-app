@@ -1,12 +1,15 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/layout/Layout";
+import MovieContextProvider from "../context/movie-context";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <MovieContextProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </MovieContextProvider>
   );
 }
 

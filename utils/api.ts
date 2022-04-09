@@ -13,6 +13,16 @@ const apis: API[] = [
     url: `${API_BASE_URL}/movie/popular?api_key=${API_KEY}`
   },
   {
+    id: "top_rated",
+    title: "Top Rated", 
+    url: `${API_BASE_URL}/movie/top_rated?api_key=${API_KEY}`
+  },
+  {
+    id: "upcoming",
+    title: "Upcoming",
+    url: `${API_BASE_URL}/movie/upcoming?api_key=${API_KEY}`
+  },
+  {
     id: "action",
     title: "Action", 
     url: `${API_BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`

@@ -6,8 +6,7 @@ import Actors from "../../components/Movies/Actors";
 import MovieDetails from "../../components/Movies/MovieDetails";
 import ActorType from "../../models/actorType";
 import MovieDetailType from "../../models/movieDetailType";
-const API_KEY = process.env.API_KEY;
-const BASE_URL = "https://api.themoviedb.org/3";
+import { API_BASE_URL, API_KEY } from "../../utils/config";
 
 const MovieDetail: NextPage<{ movieDetails: MovieDetailType; actors: ActorType[] }> = (props) => {
 
@@ -33,8 +32,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const movieId = context.params?.movieId;
 
   const [movie, actors] = await Promise.all([
-    axios.get(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`),
-    axios.get(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`),
+    axios.get(`${API_BASE_URL}/movie/${movieId}?api_key=${API_KEY}`),
+    axios.get(`${API_BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`),
   ]);
 
   const { id, genres, poster_path, overview, release_date, runtime, title, vote_average } = movie.data
