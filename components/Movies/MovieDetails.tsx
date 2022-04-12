@@ -10,13 +10,12 @@ const MovieDetails: React.FC<{ details: MovieDetailType }> = (props) => {
   return (
     <div className="container mx-auto px-4 xl:px-32 py-8">
       <div className="grid md:grid-cols-3 lg:grid-cols-7 xl:grid-cols-12 gap-6">
-        <div className="md:col-span-1 lg:col-span-2 xl:col-span-3 p-4 sm:p-8 md:p-0">
+        <div className="md:col-span-1 lg:col-span-2 xl:col-span-3 p-4 sm:p-8 md:p-0 mx-auto md:mx-0 relative w-[290px] h-[450px] md:w-auto md:h-auto">
           <Image
             className="rounded-xl"
             src={`${IMAGE_BASE_URL}${POSTER_SIZE}${props.details.imageUrl}`}
-            layout="responsive"
-            height={513}
-            width={342}
+            layout="fill"
+            objectFit="cover"
             alt=""
           />
         </div>
